@@ -75,9 +75,19 @@ public class KadurBlueprintStocker implements EveryFrameScript {
         }
     }
 
+    // readSpecial() looks a star system up by name, so it is asked once per day of game time instead of every frame
+    // (and on the first frame after a load: transient, so not saved).
+    private transient Boolean special;
+    private transient float specialAge;
+
     private void doSpecial(float amount) {
         float days = Global.getSector().getClock().convertToDays(amount);
-        if (readSpecial()) {
+        specialAge += days;
+        if (special == null || specialAge >= 1f) {
+            special = readSpecial();
+            specialAge = 0f;
+        }
+        if (special) {
             String x = E.get(0);
             float i = 1;
             float m = 0.75f * i;
