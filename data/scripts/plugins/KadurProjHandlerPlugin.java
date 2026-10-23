@@ -164,10 +164,10 @@ public class KadurProjHandlerPlugin extends BaseEveryFrameCombatPlugin {
             String projId = proj.getProjectileSpecId();
 
             // handle all the special stuff for special projs we caught
-            if (engine.isEntityInPlay(proj)
-                    && PROJ_IDS.containsKey(projId)
+            if (PROJ_IDS.containsKey(projId)
                     && !proj.didDamage()
-                    && !proj.isFading()) {
+                    && !proj.isFading()
+                    && engine.isEntityInPlay(proj)) {
 
                 // setup stuff
                 ProjData data = PROJ_IDS.get(projId);
