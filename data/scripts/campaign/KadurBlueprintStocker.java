@@ -75,8 +75,6 @@ public class KadurBlueprintStocker implements EveryFrameScript {
         }
     }
 
-    // readSpecial() looks a star system up by name, so it is asked once per day of game time instead of every frame
-    // (and on the first frame after a load: transient, so not saved).
     private transient Boolean special;
     private transient float specialAge;
 
